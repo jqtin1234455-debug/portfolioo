@@ -212,7 +212,7 @@ export const businessData = {
         "REST API",
       ],
       featured: true,
-      github: "https://github.com/jatin-yadav/mern-crud-app",
+      github: "https://github.com/jqtin1234455-debug",
       demo: "#",
       metrics: "100% REST API coverage, <100ms response time, Secure Auth",
       highlights: [
@@ -272,7 +272,7 @@ export const businessData = {
         "A scalable e-commerce backend with product catalog management, shopping cart state management, order processing, and administrative controls.",
       tech: ["Node.js", "Express.js", "MongoDB", "Mongoose", "Postman"],
       featured: false,
-      github: "https://github.com/jatin-yadav/ecommerce-rest-api",
+      github: "https://github.com/jqtin1234455-debug",
       demo: "#",
       metrics: "15+ REST Endpoints, Role-based access control",
       highlights: [
