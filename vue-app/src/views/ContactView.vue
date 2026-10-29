@@ -6,11 +6,8 @@
         <span>Get In Touch</span>
       </div>
       <h1 class="text-4xl sm:text-5xl font-black text-slate-900 dark:text-white font-heading">
-        Let's Discuss Your Project or Training
+        Let's Discuss our Project
       </h1>
-      <p class="text-base text-slate-600 dark:text-slate-400 leading-relaxed">
-        Reach out for software consulting, MERN development, responsive UI engineering, or academic/corporate IT training in Rajbiraj and beyond.
-      </p>
     </div>
 
     <div class="grid grid-cols-1">
@@ -33,7 +30,7 @@
                 type="text"
                 id="contact-name"
                 required
-                placeholder="e.g. Ramesh Sharma"
+                placeholder="e.g. Jatin yadav"
                 v-model="formData.name"
                 class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-xs text-slate-800 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-500"
               />
@@ -62,21 +59,7 @@
                 class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-xs text-slate-800 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-500"
               />
             </div>
-            <div class="space-y-1.5">
-              <label for="contact-service" class="text-xs font-semibold text-slate-700 dark:text-slate-300">Service Required</label>
-              <select
-                id="contact-service"
-                v-model="formData.service"
-                class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-xs text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-500"
-              >
-                <option value="MERN Full Stack Development">MERN Full Stack Development</option>
-                <option value="Custom Frontend (React / Vue.js)">Custom Frontend (React / Vue.js)</option>
-                <option value="Backend APIs & Database Architecture">Backend APIs & Database Architecture</option>
-                <option value="UI/UX & Mobile Responsive Redesign">UI/UX & Mobile Responsive Redesign</option>
-                <option value="Speed Optimization & Bug Fixing">Speed Optimization & Bug Fixing</option>
-                <option value="Technical Training & Mentorship">Technical Training & Mentorship</option>
-              </select>
-            </div>
+            
           </div>
 
           <div class="space-y-1.5">
@@ -113,6 +96,8 @@
 import { ref } from 'vue';
 import { Send } from 'lucide-vue-next';
 
+const WHATSAPP_NUMBER = '9826775787';
+
 const formData = ref({
   name: '',
   email: '',
@@ -132,10 +117,8 @@ const handleSubmit = () => {
     `Message: ${formData.value.message}`,
   ].join('\n');
 
-  const whatsappWindow = window.open(
-    `https://wa.me/?text=${encodeURIComponent(message)}`,
-    '_blank',
-  );
+  const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+  const whatsappWindow = window.open(whatsappUrl, '_blank');
 
   if (!whatsappWindow) {
     submitMessage.value = 'Your browser blocked the WhatsApp tab. Allow pop-ups and try again.';
@@ -143,6 +126,6 @@ const handleSubmit = () => {
   }
 
   whatsappWindow.opener = null;
-  submitMessage.value = 'WhatsApp opened with your draft. Select a recipient and send it to deliver your message.';
+  submitMessage.value = 'WhatsApp opened with your draft and the recipient set to 9826775787.';
 };
 </script>

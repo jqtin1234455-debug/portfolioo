@@ -26,8 +26,12 @@
       </button>
     </div>
 
+    <div v-if="filteredProjects.length === 0" class="rounded-3xl border border-dashed border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/60 p-8 text-center text-sm text-slate-600 dark:text-slate-300">
+      No projects available in this category yet.
+    </div>
+
     <!-- Projects Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div v-else class="grid grid-cols-1 md:grid-cols-2 gap-8">
       <div
         v-for="prj in filteredProjects"
         :key="prj.id"
@@ -177,15 +181,28 @@ import { businessData } from '../data/businessData';
 const activeFilter = ref('all');
 const selectedProject = ref(null);
 
-const filterTabs = [
-  { id: 'all', label: 'All Projects' },
-  { id: 'fullstack', label: 'MERN Full Stack' },
-  { id: 'frontend', label: 'Frontend & UI/UX' },
-  { id: 'backend', label: 'Backend APIs' }
-];
+const categoryLabels = {
+  all: 'All Projects',
+  fullstack: 'MERN Full Stack',
+  frontend: 'Frontend & UI/UX',
+  backend: 'Backend APIs'
+};
+
+const filterTabs = computed(() => {
+  const availableCategories = new Set(businessData.projects.map(project => project.category));
+  const tabs = [{ id: 'all', label: categoryLabels.all }];
+
+  ['fullstack', 'frontend', 'backend'].forEach(category => {
+    if (availableCategories.has(category)) {
+      tabs.push({ id: category, label: categoryLabels[category] });
+    }
+  });
+
+  return tabs;
+});
 
 const filteredProjects = computed(() => {
   if (activeFilter.value === 'all') return businessData.projects;
-  return businessData.projects.filter(p => p.category === activeFilter.value);
+  return businessData.projects.filter(project => project.category === activeFilter.value);
 });
 </script>
