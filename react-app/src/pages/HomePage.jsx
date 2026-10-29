@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { 
-  ArrowRight, Download, CheckCircle, Code2, 
-  Layers, Server, Database, Palette, Zap, GraduationCap, Award, ChevronRight,
-  ExternalLink, Laptop, BookOpen
+  ArrowRight, Download, CheckCircle, GraduationCap, Award, ChevronRight,
+  ExternalLink, BookOpen
 } from 'lucide-react';
 import { LinkedinIcon } from '../components/BrandIcons';
 import { businessData } from '../data/businessData';

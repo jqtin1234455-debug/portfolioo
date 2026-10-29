@@ -67,7 +67,7 @@ export default function App() {
             <Route path="/skills" element={<SkillsPage />} />
             <Route
               path="/contact"
-              element={<ContactPage onOpenResume={() => setIsResumeOpen(true)} />}
+              element={<ContactPage />}
             />
             {/* Redirect any /services to /projects */}
             <Route path="/services" element={<Navigate to="/projects" replace />} />

@@ -1,10 +1,9 @@
 "use client";
 
 import React, { useState } from 'react';
-import Link from 'next/link';
 import { 
   Layers, Code2, Server, Palette, Zap, GraduationCap, CheckCircle2, 
-  ArrowRight, Calculator, HelpCircle, ChevronDown, ChevronUp, MessageSquare 
+  Calculator, ChevronDown, ChevronUp
 } from 'lucide-react';
 import { businessData } from '../data/businessData';
 

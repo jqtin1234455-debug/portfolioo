@@ -2,10 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { 
-  ExternalLink, Layers, Code2, Database, Server, 
-  CheckCircle2, X, ArrowRight
-} from 'lucide-react';
+import { CheckCircle2, X, ArrowRight } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from '../components/BrandIcons';
 import { businessData } from '../data/businessData';
 

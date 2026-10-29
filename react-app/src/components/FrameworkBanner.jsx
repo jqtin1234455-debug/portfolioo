@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layers, ArrowRight, ExternalLink } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 
 export default function FrameworkBanner() {
   const handleSwitchToVue = () => {

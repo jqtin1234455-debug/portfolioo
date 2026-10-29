@@ -1,6 +1,6 @@
 import React from 'react';
 import { 
-  Code2, Server, Database, Palette, Terminal, GraduationCap 
+  Code2, Server, Terminal
 } from 'lucide-react';
 import { businessData } from '../data/businessData';
 

@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import { X, Printer, Award, GraduationCap, Code2, Phone, Mail, MapPin } from 'lucide-react';
+import { X, Printer, Award, GraduationCap, Code2, MapPin } from 'lucide-react';
 import { businessData } from '../data/businessData';
 
 export default function ResumeModal({ isOpen, onClose }) {

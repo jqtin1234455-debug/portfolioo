@@ -19,6 +19,7 @@ const nextConfig = {
   distDir: ".next-webpack",
   outputFileTracingRoot: projectDirectory,
   webpack(config) {
+    config.cache = false;
     config.plugins.push({
       apply(compiler) {
         compiler.hooks.compilation.tap("ReadlinkErrorCompatibility", (compilation) => {

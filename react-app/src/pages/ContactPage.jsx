@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { Send, CheckCircle2 } from 'lucide-react';
-import confetti from 'canvas-confetti';
+import { Send } from 'lucide-react';
 
-export default function ContactPage({ onOpenResume }) {
+export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -10,16 +9,30 @@ export default function ContactPage({ onOpenResume }) {
     service: 'MERN Full Stack Development',
     message: ''
   });
-  const [submitted, setSubmitted] = useState(false);
-
+  const [submitMessage, setSubmitMessage] = useState('');
   const handleSubmit = (e) => {
     e.preventDefault();
-    confetti({
-      particleCount: 100,
-      spread: 70,
-      origin: { y: 0.6 }
-    });
-    setSubmitted(true);
+    const message = [
+      'Hello! I would like to discuss a project.',
+      `Name: ${formData.name}`,
+      `Email: ${formData.email}`,
+      `Phone: ${formData.phone || 'Not provided'}`,
+      `Service: ${formData.service}`,
+      `Message: ${formData.message}`,
+    ].join('\n');
+
+    const whatsappWindow = window.open(
+      `https://wa.me/?text=${encodeURIComponent(message)}`,
+      '_blank',
+    );
+
+    if (!whatsappWindow) {
+      setSubmitMessage('Your browser blocked the WhatsApp tab. Allow pop-ups and try again.');
+      return;
+    }
+
+    whatsappWindow.opener = null;
+    setSubmitMessage('WhatsApp opened with your draft. Select a recipient and send it to deliver your message.');
   };
 
   return (
@@ -29,50 +42,36 @@ export default function ContactPage({ onOpenResume }) {
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs font-bold border border-emerald-300 dark:border-emerald-800">
           <span>Get In Touch</span>
         </div>
+        <h1 className="text-4xl sm:text-5xl font-black text-slate-900 dark:text-white font-heading">
+          Let&apos;s Discuss Your Project or Training
+        </h1>
+        <p className="text-base text-slate-600 dark:text-slate-400 leading-relaxed">
+          Reach out for software consulting, MERN development, responsive UI engineering, or academic and corporate IT training.
+        </p>
       </div>
 
       <div className="grid grid-cols-1">
         {/* Interactive Contact Form */}
         <div className="lg:col-span-7 bg-white dark:bg-slate-900 rounded-3xl p-8 sm:p-10 shadow-lg border border-slate-100 dark:border-slate-800">
-          {submitted ? (
-            <div className="p-8 text-center space-y-4 animate-fadeIn">
-              <div className="w-16 h-16 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-[#00c885] mx-auto flex items-center justify-center shadow-inner">
-                <CheckCircle2 className="w-8 h-8" />
-              </div>
-              <h3 className="text-2xl font-bold text-slate-900 dark:text-white font-heading">
-                Message Received Successfully!
-              </h3>
-              <p className="text-sm text-slate-600 dark:text-slate-400 max-w-md mx-auto">
-                Thank you for getting in touch, <strong className="text-slate-900 dark:text-white">{formData.name}</strong>. Your message has been received and will be reviewed soon.
-              </p>
-              <div className="pt-4 flex justify-center gap-3">
-                <button
-                  onClick={() => setSubmitted(false)}
-                  className="px-6 py-2.5 rounded-full border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-200 font-semibold text-xs hover:bg-slate-50 dark:hover:bg-slate-800"
-                >
-                  Send Another Message
-                </button>
-              </div>
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="space-y-5">
+          <form onSubmit={handleSubmit} className="space-y-5">
               <div className="space-y-1">
                 <h2 className="text-2xl font-bold text-slate-900 dark:text-white font-heading">
                   Send a Direct Message
                 </h2>
                 <p className="text-xs text-slate-500 dark:text-slate-400">
-                  Fill in your details below and we&apos;ll get back to you.
+                  Fill in your details to prepare a WhatsApp draft. Choose a recipient and send it there.
                 </p>
               </div>
 
               {/* Name & Email */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
+                  <label htmlFor="contact-name" className="text-xs font-semibold text-slate-700 dark:text-slate-300">
                     Your Full Name *
                   </label>
                   <input
                     type="text"
+                    id="contact-name"
                     required
                     placeholder="e.g. Ramesh Sharma"
                     value={formData.name}
@@ -82,11 +81,12 @@ export default function ContactPage({ onOpenResume }) {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
+                  <label htmlFor="contact-email" className="text-xs font-semibold text-slate-700 dark:text-slate-300">
                     Email Address *
                   </label>
                   <input
                     type="email"
+                    id="contact-email"
                     required
                     placeholder="e.g. name@example.com"
                     value={formData.email}
@@ -99,11 +99,12 @@ export default function ContactPage({ onOpenResume }) {
               {/* Phone & Service */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
+                  <label htmlFor="contact-phone" className="text-xs font-semibold text-slate-700 dark:text-slate-300">
                     Phone Number
                   </label>
                   <input
                     type="tel"
+                    id="contact-phone"
                     placeholder="e.g. +977 98xxxxxxxx"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
@@ -112,10 +113,11 @@ export default function ContactPage({ onOpenResume }) {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
+                  <label htmlFor="contact-service" className="text-xs font-semibold text-slate-700 dark:text-slate-300">
                     Service Required
                   </label>
                   <select
+                    id="contact-service"
                     value={formData.service}
                     onChange={(e) => setFormData({ ...formData, service: e.target.value })}
                     className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-xs text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-500"
@@ -132,11 +134,12 @@ export default function ContactPage({ onOpenResume }) {
 
               {/* Message */}
               <div className="space-y-1.5">
-                <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
+                <label htmlFor="contact-message" className="text-xs font-semibold text-slate-700 dark:text-slate-300">
                   Project Details / Message *
                 </label>
                 <textarea
                   rows="4"
+                  id="contact-message"
                   required
                   placeholder="Describe your requirements, timeline, or project goals..."
                   value={formData.message}
@@ -152,11 +155,13 @@ export default function ContactPage({ onOpenResume }) {
                   className="w-full sm:w-auto px-7 py-3 rounded-full bg-[#00c885] hover:bg-[#00b074] text-white font-bold text-xs shadow-md shadow-emerald-500/25 flex items-center justify-center gap-2 transition-all transform active:scale-95"
                 >
                   <Send className="w-3.5 h-3.5" />
-                  <span>Submit Inquiry</span>
+                  <span>Continue in WhatsApp</span>
                 </button>
+                <p className="text-xs text-slate-500 dark:text-slate-400" role="status" aria-live="polite">
+                  {submitMessage || 'Your message opens as a draft; it is only delivered after you send it in WhatsApp.'}
+                </p>
               </div>
-            </form>
-          )}
+          </form>
         </div>
       </div>
     </div>

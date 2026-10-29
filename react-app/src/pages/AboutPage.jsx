@@ -1,7 +1,6 @@
 import React from 'react';
 import { 
-  GraduationCap, Award, Languages, CheckCircle2, 
-  Download, MapPin, Phone, Mail, ArrowRight, UserCheck, Code2
+  GraduationCap, Award, Download, MapPin, UserCheck
 } from 'lucide-react';
 import { LinkedinIcon } from '../components/BrandIcons';
 import { businessData } from '../data/businessData';

@@ -6,6 +6,8 @@ import { GraduationCap, Award, ArrowUp } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from './BrandIcons';
 import { businessData } from '../data/businessData';
 
+const currentYear = new Date().getFullYear();
+
 export default function Footer() {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -121,7 +123,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
           <div>
-            © {new Date().getFullYear()} {businessData.name} (JK Dev). All rights reserved.
+            © {currentYear} {businessData.name} (JK Dev). All rights reserved.
           </div>
 
           <div className="flex items-center gap-4">

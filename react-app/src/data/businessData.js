@@ -8,7 +8,7 @@ export const businessData = {
   phone: "",
   phoneDisplay: "",
   email: "",
-  linkedin: "",
+  linkedin: "https://www.linkedin.com/in/jatin-yadav-8530a8416/",
   github: "",
   avatarUrl: "/jatin-photo.jpg",
   summary: "Full Stack Developer with hands-on experience building and deploying responsive web applications using the MERN stack (MongoDB, Express.js, React.js, Node.js). Combines strong analytical problem-solving with a track record of delivering functional, end-to-end projects. Seeking an entry-level Full Stack Developer role to apply and grow technical skills in a production environment.",
